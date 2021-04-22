@@ -18,11 +18,13 @@ public class Test extends testBase {
     @Given("^escojo la ruta de retorno$")
     public void escojo_la_ruta_de_retorno() throws Exception {
         paginaInicioPo.ingreseDestino();
+        paginaInicioPo.idaFecha();
+        paginaInicioPo.vueltaFecha();
     }
 
     @Given("^escojo el asiento$")
     public void escojo_el_asiento() throws Exception {
-        paginaInicioPo.fechaIdaRegeso();
+
 
     }
 

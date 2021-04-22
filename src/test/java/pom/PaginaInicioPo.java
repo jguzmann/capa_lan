@@ -1,8 +1,8 @@
 package pom;
 
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -32,8 +32,37 @@ public class PaginaInicioPo extends BasePage {
     @FindBy(css = "#btnItemAutoComplete_0")
     WebElement selectRegreso;
 
-    @FindBy (id = "departureDate")
-    WebElement dateIdaRegreso;
+    @FindBy (css = "#departureDate")
+    WebElement selectfechaIda;
+
+    @FindBy (xpath = "(//tbody//td//span[@class='sc-fEVUGC cOtign' and contains(text(),'30')])[2]")
+    WebElement fHoy;
+
+    @FindBy (xpath = "(//tbody//td//span[@class='sc-fEVUGC cOtign' and contains(text(),'30')])[2]")
+    WebElement fVuelta;
+
+    @FindBy (id = "arrivalDate")
+    WebElement selectfechaVuelta;
+
+    @FindBy (id = "btnSearchCTA")
+    WebElement btnBuscar;
+
+    //@FindBy (xpath = "(//*[@class = 'sc-bOCYYb bpIvuu'])[1]")
+    @FindBy (xpath = "//span[contains(text(),'Duración')]")
+    WebElement cardVuelo;
+
+    @FindBy (xpath = "//body/div[@id='__next']/div[@id='flight-seleccion-wrapper']/main[@id='main-content']/div[1]/div[1]/div[1]/ol[2]/li[1]/div[1]/ol[1]/li[2]/div[1]/div[1]/div[2]/div[2]")
+    WebElement basic;
+
+    @FindBy (id = "button9")
+    WebElement btnContinuar;
+
+
+    //Banner
+    @FindBy (css = "#dialog0-0")
+    WebElement banner;
+
+    //hoy = Integer.toString(c.get(Calendar.DATE));
 
 
     // METODOS
@@ -45,31 +74,44 @@ public class PaginaInicioPo extends BasePage {
         waitFor(3);
     }
 
-
     public void ingreseOrigen() {
-        waitFor(3);
         origen.click();
-        waitFor(3);
+        waitFor(1);
         origen.sendKeys("Santiago de Chile");
         selectIda.click();
     }
 
     public void ingreseDestino() {
-        waitFor(3);
         destino.click();
-        waitFor(3);
+        waitFor(1);
         destino.sendKeys("Temuco");
-        waitFor(2);
         selectRegreso.click();
-        waitFor(5);
     }
 
-    public void fechaIdaRegeso(){
-        waitFor(3);
-        dateIdaRegreso.click();
-        waitFor(5);
-        
+    public void idaFecha(){
+        selectfechaIda.click();
+        waitFor(2);
+        fHoy.click();
     }
 
+    public  void vueltaFecha(){
+        selectfechaVuelta.click();
+        fVuelta.click();
+        btnBuscar.click();
+        waitFor(5);
+        cardVuelo.click();
+
+        waitFor(5);
+       // waitForClick(basic);
+        new Actions(driver).moveToElement(basic,1,1).click().perform();
+
+
+        waitFor(15);
+        btnContinuar.click();
+
+
+
+        waitFor(5);
+    }
 
 }
